@@ -1,0 +1,144 @@
+/* Body of the real Picture-in-Picture window */
+.pipBody {
+  margin: 0;
+  min-height: 100vh;
+  background: #0e1113;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  overflow: hidden;
+}
+
+/* In-app draggable fallback container */
+.floating {
+  position: absolute;
+  inset-inline-end: 24px;
+  inset-block-end: 120px;
+  z-index: 60;
+  transform: translate(var(--drag-x, 0px), var(--drag-y, 0px));
+  border-radius: 22px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-float);
+}
+
+.floating:active {
+  cursor: grabbing;
+}
+
+/* Derived tokens (re-declared so they also work inside the PiP window,
+   where the app root container does not exist). */
+.pipRoot {
+  --accent-soft: color-mix(in srgb, var(--accent-color) 16%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent-color) 40%, transparent);
+  --on-accent: #0e1113;
+  position: relative;
+}
+
+.mini {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 300px;
+  padding: 14px 18px;
+  min-height: 80px;
+}
+
+.playBtn {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: var(--on-accent);
+  box-shadow: 0 6px 20px var(--accent-glow);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.playBtn:hover {
+  transform: scale(1.06);
+}
+
+.playBtn:active {
+  transform: scale(0.94);
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.time {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  text-align: start;
+}
+
+.mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.modeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.stopBtn {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.stopBtn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.closeBtn {
+  position: absolute;
+  inset-block-start: 6px;
+  inset-inline-end: 6px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.closeBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-card);
+}

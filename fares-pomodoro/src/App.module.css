@@ -1,0 +1,50 @@
+.root {
+  /* Derived tokens: declared here so they pick up the live --accent-color
+     that App.jsx sets on this same element. */
+  --accent-soft: color-mix(in srgb, var(--accent-color) 16%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent-color) 42%, transparent);
+  --on-accent: #0e1113;
+
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--bg-dark);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+}
+
+/* Dark vignette over the wallpaper */
+.root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 12, 15, 0.58) 30%,
+    rgba(5, 6, 8, 0.82) 100%
+  );
+}
+
+.main {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 130px;
+}
+
+@media (max-width: 560px) {
+  .main {
+    padding: 70px 14px 110px 60px;
+  }
+}
